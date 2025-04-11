@@ -44,7 +44,7 @@ export default function Home() {
   };
 
   const reShuffleTable = () => {
-    let newCards = resetTable(deck, tableCards);
+    const newCards = resetTable(deck, tableCards);
     setDeck(newCards.deck);
     setTableCards(newCards.table);
     setAmountShuffled(prev => prev + 1);
