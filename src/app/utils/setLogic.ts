@@ -48,6 +48,18 @@ export function fillTable(deck: Card[], table: (Card | null)[]): (Card | null)[]
     return table;
 }
 
+export function hasAnySet(table: (Card | null)[]): boolean {
+    const cards = table.filter((c): c is Card => c !== null);
+    for (let i = 0; i < cards.length - 2; i++) {
+        for (let j = i + 1; j < cards.length - 1; j++) {
+            for (let k = j + 1; k < cards.length; k++) {
+                if (checkSet([cards[i], cards[j], cards[k]])) return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function checkSet(cards: Card[]): boolean {
     if (cards.length !== 3) return false;
 
