@@ -8,14 +8,15 @@ interface SidebarProps {
   amountShuffled: number
   elapsedSeconds: number
   reShuffleTable: () => void
+  scrambleTable: () => void
 }
 
 type SymbolType = 'oval' | 'diamond' | 'squiggle'
 type FillType = 'solid' | 'striped' | 'open'
-type ColorType = 'red' | 'green' | 'purple'
+type ColorType = 'orange' | 'green' | 'purple'
 
 const colorHex: Record<ColorType, string> = {
-  red: '#ef4444',
+  orange: '#f97316',
   green: '#22c55e',
   purple: '#a855f7',
 }
@@ -104,7 +105,7 @@ const RulesModal = ({ onClose }: { onClose: () => void }) => (
         <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-300">
           <div><span className="text-white font-medium">Number</span> — 1, 2, or 3</div>
           <div><span className="text-white font-medium">Symbol</span> — oval, diamond, square</div>
-          <div><span className="text-white font-medium">Color</span> — red, green, purple</div>
+          <div><span className="text-white font-medium">Color</span> — orange, green, purple</div>
           <div><span className="text-white font-medium">Fill</span> — solid, striped, open</div>
         </div>
       </div>
@@ -126,7 +127,7 @@ const RulesModal = ({ onClose }: { onClose: () => void }) => (
             valid={true}
             label="all different in every attribute"
             cards={[
-              { color: 'red', symbol: 'oval', fill: 'solid', count: 1 },
+              { color: 'orange', symbol: 'oval', fill: 'solid', count: 1 },
               { color: 'green', symbol: 'diamond', fill: 'striped', count: 2 },
               { color: 'purple', symbol: 'squiggle', fill: 'open', count: 3 },
             ]}
@@ -144,8 +145,8 @@ const RulesModal = ({ onClose }: { onClose: () => void }) => (
             valid={false}
             label="two share a color (2 ≠ all same/different)"
             cards={[
-              { color: 'red', symbol: 'oval', fill: 'solid', count: 1 },
-              { color: 'red', symbol: 'diamond', fill: 'striped', count: 2 },
+              { color: 'orange', symbol: 'oval', fill: 'solid', count: 1 },
+              { color: 'orange', symbol: 'diamond', fill: 'striped', count: 2 },
               { color: 'purple', symbol: 'squiggle', fill: 'open', count: 3 },
             ]}
           />
@@ -173,7 +174,8 @@ const Sidebar: React.FC<SidebarProps> = ({
   completedSets,
   amountShuffled,
   elapsedSeconds,
-  reShuffleTable
+  reShuffleTable,
+  scrambleTable,
 }) => {
   const [showRules, setShowRules] = useState(false)
 
@@ -185,13 +187,19 @@ const Sidebar: React.FC<SidebarProps> = ({
           <h1 className="text-2xl font-bold mb-4">Sidebar</h1>
           <h2 className="text-xl font-bold">Cards Remaining: {cardsInDeck}</h2>
           <h2 className="text-xl font-bold">Completed Sets: {completedSets}</h2>
-          <h2 className="text-xl font-bold">Amount Shuffled: {amountShuffled}</h2>
+          <h2 className="text-xl font-bold">New Deals: {amountShuffled}</h2>
           <h2 className="text-xl font-bold">Time: {formatTime(elapsedSeconds)}</h2>
           <button
             onClick={() => reShuffleTable()}
-            className="w-1/2 h-10 p-2 bg-green-400 rounded-lg flex flex-col items-center justify-center text-black border-2 border-white cursor-pointer"
+            className="w-3/4 h-10 p-2 bg-green-400 rounded-lg flex flex-col items-center justify-center text-black border-2 border-white cursor-pointer text-sm font-semibold"
           >
-            Shuffle Table
+            New Deal
+          </button>
+          <button
+            onClick={() => scrambleTable()}
+            className="w-3/4 h-10 p-2 bg-sky-400 rounded-lg flex flex-col items-center justify-center text-black border-2 border-white cursor-pointer text-sm font-semibold"
+          >
+            Scramble Table
           </button>
         </div>
 

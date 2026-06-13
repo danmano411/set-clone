@@ -9,7 +9,7 @@ interface CardProps {
     amount: 1 | 2 | 3
     symbol: "oval" | "diamond" | "squiggle"
     fill: "solid" | "striped" | "open"
-    color: "red" | "green" | "purple"
+    color: "orange" | "green" | "purple"
 
     selected: boolean
     handleToggleCard: (index: number) => void

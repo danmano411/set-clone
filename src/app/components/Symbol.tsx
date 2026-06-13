@@ -11,7 +11,7 @@ import { TbRectangleVertical } from "react-icons/tb";
 interface SymbolProps {
     symbol: "oval" | "diamond" | "squiggle"
     fill: "solid" | "striped" | "open"
-    color: "red" | "green" | "purple"
+    color: "orange" | "green" | "purple"
 }
 
 const Symbol: React.FC<SymbolProps> = ({
@@ -30,16 +30,18 @@ const Symbol: React.FC<SymbolProps> = ({
     }
 
     return (
-        <div className={`inline-flex text-9xl items-center justify-center overflow-hidden
-        ${color === "red" ? 'text-red-500' : color === 'green' ? 'text-green-500' : 'text-purple-500'}
-         `}>
+        <div
+            className={`inline-flex items-center justify-center overflow-hidden
+            ${color === "orange" ? 'text-orange-500' : color === 'green' ? 'text-green-500' : 'text-purple-500'}`}
+            style={{ fontSize: 'var(--symbol-size)' }}
+        >
             {
             symbol === "oval" ?
                 fill === "solid" ? (
-                <TbOvalFilled size={70} />
+                <TbOvalFilled size="1em" />
                 ) : fill === "striped" ? (
-                <div className="relative">
-                    <TbOvalFilled opacity={0.45} size={70} />
+                <div className="relative" style={{ width: '1em', height: '1em' }}>
+                    <TbOvalFilled opacity={0.45} size="1em" />
                     <div className='absolute inset-0 flex flex-col items-center justify-center'>
                     {Array.from({ length: 7 }).map((_, index) => (
                         <div
@@ -53,14 +55,14 @@ const Symbol: React.FC<SymbolProps> = ({
                     </div>
                 </div>
                 ) : (
-                <TbOval size={70} />
+                <TbOval size="1em" />
                 )
                 : symbol === "diamond" ?
                 fill === "solid" ? (
-                    <RiPokerDiamondsFill size={70} />
+                    <RiPokerDiamondsFill size="1em" />
                 ) : fill === "striped" ? (
-                    <div className="relative">
-                    <RiPokerDiamondsFill opacity={0.45} size={70} />
+                    <div className="relative" style={{ width: '1em', height: '1em' }}>
+                    <RiPokerDiamondsFill opacity={0.45} size="1em" />
                     <div className='absolute inset-0 flex flex-col items-center justify-center'>
                         {Array.from({ length: 7 }).map((_, index) => (
                         <div
@@ -74,14 +76,14 @@ const Symbol: React.FC<SymbolProps> = ({
                     </div>
                     </div>
                 ) : (
-                    <RiPokerDiamondsLine size={70} />
+                    <RiPokerDiamondsLine size="1em" />
                 )
                 : symbol === "squiggle" ?
                     fill === "solid" ? (
-                    <TbRectangleVerticalFilled size={70} />
+                    <TbRectangleVerticalFilled size="1em" />
                     ) : fill === "striped" ? (
-                    <div className="relative">
-                        <TbRectangleVerticalFilled opacity={0.45} size={70} />
+                    <div className="relative" style={{ width: '1em', height: '1em' }}>
+                        <TbRectangleVerticalFilled opacity={0.45} size="1em" />
                         <div className='absolute inset-0 flex flex-col items-center justify-center'>
                         {Array.from({ length: 7 }).map((_, index) => (
                             <div
@@ -95,7 +97,7 @@ const Symbol: React.FC<SymbolProps> = ({
                         </div>
                     </div>
                     ) : (
-                    <TbRectangleVertical size={70} />
+                    <TbRectangleVertical size="1em" />
                     )
                     : null
             }

@@ -8,7 +8,7 @@ type Card = {
   amount: 1 | 2 | 3;
   symbol: "oval" | "diamond" | "squiggle";
   fill: "solid" | "striped" | "open";
-  color: "red" | "green" | "purple";
+  color: "orange" | "green" | "purple";
 };
 
 export default function Home() {
@@ -103,6 +103,15 @@ export default function Home() {
     setAmountShuffled(prev => prev + 1);
   }
 
+  const scrambleTable = () => {
+    const shuffled = [...tableCards];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    setTableCards(shuffled);
+  }
+
   return (
     <div className="flex flex-row items-center justify-center min-h-screen">
       {gameOver && (
@@ -115,8 +124,11 @@ export default function Home() {
               <span className="text-green-400 font-bold text-2xl">{completedSets}</span>{' '}
               sets!
             </p>
-            <p className="text-gray-400 mb-8">
+            <p className="text-gray-400 mb-2">
               Time: <span className="text-white font-semibold">{formatTime(finalTime)}</span>
+            </p>
+            <p className="text-gray-400 mb-8">
+              New Deals: <span className="text-white font-semibold">{amountShuffled}</span>
             </p>
             <button
               onClick={handleRestart}
@@ -127,7 +139,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      <div className="grid grid-cols-4 grid-rows-3 flex-grow bg-slate-100 gap-4 h-screen px-32 py-56">
+      <div className="grid grid-cols-4 grid-rows-3 flex-grow bg-slate-100 gap-[clamp(0.25rem,1vw,1rem)] h-screen px-[clamp(2rem,6vw,6rem)] py-[clamp(2rem,6vh,8rem)]">
         {tableCards.map((card, index) => (
           card ? (
             <Card
@@ -148,7 +160,7 @@ export default function Home() {
       <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-40 px-6 py-2.5 bg-gray-800 text-white text-sm font-medium rounded-full shadow-lg border border-gray-600 transition-opacity duration-500 pointer-events-none ${showShuffleNotice ? 'opacity-100' : 'opacity-0'}`}>
         No sets found — auto-shuffling...
       </div>
-      <Sidebar completedSets={completedSets} cardsInDeck={deck.length} reShuffleTable={reShuffleTable} amountShuffled={amountShuffled} elapsedSeconds={elapsedSeconds} />
+      <Sidebar completedSets={completedSets} cardsInDeck={deck.length} reShuffleTable={reShuffleTable} scrambleTable={scrambleTable} amountShuffled={amountShuffled} elapsedSeconds={elapsedSeconds} />
     </div>
   );
 }

@@ -11,7 +11,7 @@ type CardData = {
   amount: 1 | 2 | 3
   symbol: 'oval' | 'diamond' | 'squiggle'
   fill: 'solid' | 'striped' | 'open'
-  color: 'red' | 'green' | 'purple'
+  color: 'orange' | 'green' | 'purple'
 }
 
 interface TestCase {
@@ -111,6 +111,15 @@ export default function TestContent() {
     setDeck([...n.deck])
     setTableCards([...n.table])
     setAmountShuffled(p => p + 1)
+  }
+
+  const scrambleTable = () => {
+    const shuffled = [...tableCards]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    setTableCards(shuffled)
   }
 
   // ── Test scenarios ────────────────────────────────────────────────────────
@@ -229,6 +238,7 @@ export default function TestContent() {
           completedSets={completedSets}
           cardsInDeck={deck.length}
           reShuffleTable={reShuffleTable}
+          scrambleTable={scrambleTable}
           amountShuffled={amountShuffled}
           elapsedSeconds={elapsedSeconds}
         />

@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --symbol-size: clamp(28px, 4.5vw, 70px);
 }
 
 @theme inline {

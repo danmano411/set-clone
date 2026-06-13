@@ -2,11 +2,11 @@ type Card = {
     amount: 1 | 2 | 3;
     symbol: "oval" | "diamond" | "squiggle";
     fill: "solid" | "striped" | "open";
-    color: "red" | "green" | "purple";
+    color: "orange" | "green" | "purple";
 };
 
 export function initializeDeck(): Card[] {
-    const colors: Card['color'][] = ['red', 'green', 'purple'];
+    const colors: Card['color'][] = ['orange', 'green', 'purple'];
     const fills: Card['fill'][] = ['solid', 'striped', 'open'];
     const symbols: Card['symbol'][] = ['oval', 'squiggle', 'diamond'];
     const amounts: Card['amount'][] = [1, 2, 3];
