@@ -110,6 +110,7 @@ export default function Home() {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     setTableCards(shuffled);
+    setSelectedCards(Array(12).fill(false));
   }
 
   return (

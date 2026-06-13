@@ -120,6 +120,7 @@ export default function TestContent() {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
     }
     setTableCards(shuffled)
+    setSelectedCards(Array(12).fill(false))
   }
 
   // ── Test scenarios ────────────────────────────────────────────────────────
@@ -215,7 +216,7 @@ export default function TestContent() {
         </div>
 
         {/* Board */}
-        <div className="grid grid-cols-4 grid-rows-3 flex-grow bg-slate-100 gap-4 h-screen px-32 py-56">
+        <div className="grid grid-cols-4 grid-rows-3 flex-grow bg-slate-100 gap-[clamp(0.25rem,1vw,1rem)] h-screen px-[clamp(2rem,6vw,6rem)] py-[clamp(2rem,6vh,8rem)]">
           {tableCards.map((card, index) =>
             card ? (
               <Card
